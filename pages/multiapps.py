@@ -81,7 +81,7 @@ def multiapps_main(username):
     FOLDER_ID = "PASTE_YOUR_FOLDER_ID_HERE"
 
     myfile = app.file_uploader("Choose a file")
-    if myfile and st.button("Upload to Drive"):
+    if myfile and app.button("Upload to Drive"):
         fid = upload_file(myfile, FOLDER_ID)
         app.success(f"Uploaded! File ID: {fid}")
 
