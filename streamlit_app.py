@@ -1,9 +1,6 @@
 import streamlit as app
 import multiapps
 
-multiapps = app.Page("multiapps.py", title="app")
-navigator = app.navigation(multiapps)
-
 matt = {"username": "Mateo", "password": "210812"}
 ver = "1"
 
