@@ -41,7 +41,7 @@ def multiapps_main(username):
     url = app.text_input("Input the URL of your music.")
     try:
         if app.button("Play"):
-            app.audio(url, format="audio/mp3")
+            app.video(url, format="audio/mp3")
     except Exception:
         app.error("Invalid URL provided, **make sure it's MP3**.")
 
