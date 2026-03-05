@@ -19,4 +19,4 @@ def multiapps_main(username):
     app.subheader("Welcome Mateo.")
     app.write("This website aimed to serve me, Mateo. You'll be able to find some quite useful apps such as a music player and a calculator")
 
-authenticate
+authenticate()
