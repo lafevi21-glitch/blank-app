@@ -1,5 +1,5 @@
 import streamlit as app
-from multiapps import redirected_user
+import multiapps
 
 multiapps = app.Page("multiapps.py")
 
@@ -16,7 +16,7 @@ def authenticate():
     if app.button("Login"):
         if na_username == matt["username"] and na_password == matt["password"]:
             app.empty()
-            redirected_user = na_username
+            multiapps.redirected_user = na_username
             app.navigation(multiapps)
 
 
