@@ -36,6 +36,6 @@ def authenticate():
             # Switch to the page inside the 'pages' folder
             app.switch_page("pages/multiapps.py") 
         else:
-            app.error("Invalid username or password")
+            app.error("Invalid login prompt.")
 
 authenticate()
