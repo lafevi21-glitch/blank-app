@@ -1,5 +1,4 @@
 import streamlit as app
-import multiapps
 
 matt = {"username": "Mateo", "password": "210812"}
 ver = "1"
@@ -14,9 +13,7 @@ def authenticate():
     if app.button("Login"):
         if na_username == matt["username"] and na_password == matt["password"]:
             app.empty()
-            multiapps.redirected_user = na_username
-            app.switch_page("multiapps.py")
-
-
+            app.session_state["logged_user"] = na_username
+            app.switch_page("pages/multiapps.py")
 
 authenticate()
