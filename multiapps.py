@@ -2,7 +2,7 @@ import streamlit as app
 
 ver = "1"
 
-redirected_user = None
+redirected_user = "None"
 
 def multiapps_main(username):
     
