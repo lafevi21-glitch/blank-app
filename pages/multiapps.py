@@ -1,5 +1,23 @@
 import streamlit as app
 
+app.set_page_config(initial_sidebar_state="collapsed")
+
+app.markdown(
+    """
+    <style>
+        /* This hides the sidebar itself */
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+        /* This hides the ' > ' arrow button that lets users open it */
+        [data-testid="stSidebarCollapsedControl"] {
+            display: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 ver = "1"
 
 redirected_user = app.session_state.get("logged_user", "Guest")
