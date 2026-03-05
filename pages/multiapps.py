@@ -1,5 +1,10 @@
 import streamlit as app
 
+if not "logged_user" in app.session_state:
+    app.error("Please, make sure you are logged!")
+    app.switch_page("streamlit_app.py")
+    app.stop()
+
 app.set_page_config(initial_sidebar_state="collapsed")
 
 app.markdown(
