@@ -11,7 +11,7 @@ def authenticate():
     na_password = app.text_input("Enter password", type=password)
     
     if na_username == matt["username"] and na_password == matt["password"]:
-        multiapps_main(username)
+        multiapps_main(na_username)
         
 
 def multiapps_main(username):
@@ -19,4 +19,4 @@ def multiapps_main(username):
     app.subheader("Welcome Mateo.")
     app.write("This website aimed to serve me, Mateo. You'll be able to find some quite useful apps such as a music player and a calculator")
 
-
+authenticate()
