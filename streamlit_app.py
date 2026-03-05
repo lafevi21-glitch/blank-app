@@ -10,8 +10,9 @@ def authenticate():
     na_username = app.text_input("Enter username")
     na_password = app.text_input("Enter password", type="password")
     
-    if na_username == matt["username"] and na_password == matt["password"]:
-        multiapps_main(na_username)
+    if app.button("Login"):
+        if na_username == matt["username"] and na_password == matt["password"]:
+            multiapps_main(na_username)
         
 
 def multiapps_main(username):
