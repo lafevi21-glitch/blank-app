@@ -1,6 +1,4 @@
-import streamlit as st
+import streamlit as app
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+app.title("Hysterial AI")
+app.write("Welcome to Hysterial AI Beta's live demo! Feel free to use this app in whatever way you want. You may need at least" + app.badge("4GB RAM") + "to run this app")
