@@ -3,6 +3,12 @@ import streamlit as app
 matt = {"username": "Mateo", "password": "210812"}
 ver = "1"
 
+def multiapps_main(username):
+    
+    app.header("✨ Multiapps V" + ver)
+    app.subheader("Welcome Mateo.")
+    app.write("This website aimed to serve me, Mateo. You'll be able to find some quite useful apps such as a music player and a calculator")
+
 def authenticate():
     app.title("Authenticate.")
     app.write("Please enter the password and agree to the terms and conditions to be able to proceed to the app.")
@@ -13,11 +19,6 @@ def authenticate():
     if app.button("Login"):
         if na_username == matt["username"] and na_password == matt["password"]:
             multiapps_main(na_username)
-        
 
-def multiapps_main(username):
-    app.header("Multiapps V" + ver)
-    app.subheader("Welcome Mateo.")
-    app.write("This website aimed to serve me, Mateo. You'll be able to find some quite useful apps such as a music player and a calculator")
 
 authenticate()
