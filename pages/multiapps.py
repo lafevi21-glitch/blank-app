@@ -2,7 +2,7 @@ import streamlit as app
 
 ver = "1"
 
-redirected_user = app.session_state.get("logged", "Guest")
+redirected_user = app.session_state.get("logged_user", "Guest")
 
 def multiapps_main(username):
     
