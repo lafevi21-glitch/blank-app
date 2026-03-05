@@ -62,7 +62,7 @@ def multiapps_main(username):
 
     def get_drive_service():
         # This pulls directly from the secrets we just configured
-        info = st.secrets["gcp_service_account"]
+        info = app.secrets["gcp_service_account"]
         creds = service_account.Credentials.from_service_account_info(info)
         return build('drive', 'v3', credentials=creds)
 
@@ -75,14 +75,14 @@ def multiapps_main(username):
         file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         return file.get('id')
 
-    st.title("Secure Drive Upload")
+    app.title("Secure Drive Upload")
 
     
     FOLDER_ID = "PASTE_YOUR_FOLDER_ID_HERE"
 
-    myfile = st.file_uploader("Choose a file")
-    if myfile and st.button("Upload to Drive"):
+    myfile = app.file_uploader("Choose a file")
+    if myfile and app.button("Upload to Drive"):
         fid = upload_file(myfile, FOLDER_ID)
-        st.success(f"Uploaded! File ID: {fid}")
+        app.success(f"Uploaded! File ID: {fid}")
 
 multiapps_main(redirected_user)
