@@ -6,7 +6,7 @@ ver = "1"
 def multiapps_main(username):
     
     app.header("✨ Multiapps V" + ver)
-    app.subheader("Welcome Mateo.")
+    app.subheader("Welcome"+ username +".")
     app.write("This website aimed to serve me, Mateo. You'll be able to find some quite useful apps such as a music player and a calculator")
 
 def authenticate():
@@ -18,6 +18,7 @@ def authenticate():
     
     if app.button("Login"):
         if na_username == matt["username"] and na_password == matt["password"]:
+            app.empty()
             multiapps_main(na_username)
 
 
