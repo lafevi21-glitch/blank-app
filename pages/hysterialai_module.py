@@ -35,9 +35,14 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # --- CHAT LOGIC ---
-with st.chat_message("assistant"):
-    placeholder = st.empty()
-    full_response = ""
+if prompt := st.chat_input("Ask Hysterial AI..."):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    with st.chat_message("assistant"):
+        placeholder = st.empty()
+        full_response = ""
     
     gemini_history = []
     for m in st.session_state.messages[:-1]:
