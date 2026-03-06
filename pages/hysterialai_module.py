@@ -44,7 +44,7 @@ if prompt := st.chat_input("Ask Hysterial AI..."):
         placeholder = st.empty()
         full_response = ""
     
-    max_retries = 3
+    max_retries = 9999
     for attempt in range(max_retries):
         try:
             with genai.Client(api_key=api_key) as client:
@@ -59,8 +59,6 @@ if prompt := st.chat_input("Ask Hysterial AI..."):
             if attempt < max_retries - 1:
                 time.sleep(2) # Wait 2 seconds before retrying
                 continue
-            else:
-                st.error("Google's servers are a bit unstable right now. Please try again in a moment.")
     
     gemini_history = []
     for m in st.session_state.messages[:-1]:
