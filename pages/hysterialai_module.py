@@ -3,7 +3,7 @@ from google import genai
 import os
 
 # --- PAGE CONFIG ---
-st.set_page_config(page_title="Hysterial AI", page_icon="🤖")
+st.set_page_config(page_title="Hysterial AI", page_icon="💻")
 st.title("Hysterial AI")
 
 api_key = st.secrets.get("GEMINI_API_KEY")
@@ -35,24 +35,24 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # --- CHAT LOGIC ---
-if prompt := st.chat_input("Ask Hysterial AI..."):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
+with st.chat_message("assistant"):
+    placeholder = st.empty()
+    full_response = ""
+    
+    gemini_history = []
+    for m in st.session_state.messages[:-1]:
+        role = "model" if m["role"] == "assistant" else "user"
+        gemini_history.append({"role": role, "parts": [{"text": m["content"]}]})
 
-    with st.chat_message("assistant"):
-        placeholder = st.empty()
-        full_response = ""
+    with genai.Client(api_key=api_key) as client:
+        chat = client.chats.create(model=model_choice, history=gemini_history)
         
-        with genai.Client(api_key=api_key) as client:
-            chat = client.chats.create(model=model_choice, history=st.session_state.messages[:-1])
-            
-            stream = chat.send_message_stream(prompt)
-            
-            for chunk in stream:
-                if chunk.text:
-                    full_response += chunk.text
-                    placeholder.markdown(full_response + "▌")
+        stream = chat.send_message_stream(prompt)
+        
+        for chunk in stream:
+            if chunk.text:
+                full_response += chunk.text
+                placeholder.markdown(full_response + "▌")
             
         placeholder.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
