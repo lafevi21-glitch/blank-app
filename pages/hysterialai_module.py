@@ -41,22 +41,27 @@ for message in st.session_state.messages:
 
 # --- CHAT LOGIC ---
 if prompt := st.chat_input("Ask Hysterial AI..."):
-    # User message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # AI Response with Streaming
     with st.chat_message("assistant"):
         placeholder = st.empty()
         full_response = ""
         
-        # Send message and stream the response
-        stream = st.session_state.chat_session.send_message_stream(prompt)
-        
-        for chunk in stream:
-            full_response += chunk.text
-            placeholder.markdown(full_response + "▌")
+        # FIX: Wrap the client and stream in a context manager
+        with genai.Client(api_key=api_key) as client:
+            # Re-create the session inside the context or use the one from state
+            # Note: For streaming, creating a fresh chat session inside the 'with' 
+            # block is the safest way to prevent 'client closed' errors.
+            chat = client.chats.create(model=model_choice, history=st.session_state.messages[:-1])
+            
+            stream = chat.send_message_stream(prompt)
+            
+            for chunk in stream:
+                if chunk.text:
+                    full_response += chunk.text
+                    placeholder.markdown(full_response + "▌")
             
         placeholder.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
