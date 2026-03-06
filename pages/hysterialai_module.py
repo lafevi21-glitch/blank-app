@@ -1,6 +1,6 @@
 import streamlit as st
 from google import genai
-import os
+import time
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Hysterial AI", page_icon="💻")
@@ -43,6 +43,24 @@ if prompt := st.chat_input("Ask Hysterial AI..."):
     with st.chat_message("assistant"):
         placeholder = st.empty()
         full_response = ""
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            with genai.Client(api_key=api_key) as client:
+                chat = client.chats.create(model=model_choice, history=gemini_history)
+                stream = chat.send_message_stream(prompt)
+                for chunk in stream:
+                    if chunk.text:
+                        full_response += chunk.text
+                        placeholder.markdown(full_response + "▌")
+                break # Success! Exit the retry loop
+        except Exception as e:
+            if attempt < max_retries - 1:
+                time.sleep(2) # Wait 2 seconds before retrying
+                continue
+            else:
+                st.error("Google's servers are a bit unstable right now. Please try again in a moment.")
     
     gemini_history = []
     for m in st.session_state.messages[:-1]:
