@@ -24,7 +24,7 @@ with st.sidebar:
         st.session_state.chat_session = client.chats.create(model=model_choice)
         st.session_state.messages = []
         st.rerun()
-    if st.button("← Back"):
+    if st.link_button("← Back", url="hysterial-ai.streamlit.app"):
         st.switch_page("multiapps.py")
 
 # --- SESSION STATE ---
