@@ -4,7 +4,6 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 import io
 
-st
 if not "logged_user" in app.session_state:
     app.error("Please, make sure you are logged!")
     app.switch_page("streamlit_app.py")
