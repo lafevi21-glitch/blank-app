@@ -6,6 +6,9 @@ import time
 st.set_page_config(page_title="Hysterial AI", page_icon="💻")
 st.title("Hysterial AI")
 
+if st.button("Back"):
+    st.switch_page("multiapps.py")
+
 api_key = st.secrets.get("GEMINI_API_KEY")
 
 if not api_key:
