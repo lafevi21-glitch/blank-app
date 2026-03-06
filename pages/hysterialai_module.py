@@ -17,7 +17,7 @@ client = genai.Client(api_key=api_key)
 # --- SIDEBAR SETTINGS ---
 with st.sidebar:
     st.header("Settings")
-    model_choice = st.selectbox("Model", ["gemini-3-flash", "gemini-2.0-flash"])
+    model_choice = st.selectbox("Model", ["gemini-3-flash-preview", "gemini-2.5-flash"])
     temp = st.slider("Creativity", 0.1, 1.5, 0.7)
     if st.button("Clear Chat"):
         st.session_state.chat_session = client.chats.create(model=model_choice)
