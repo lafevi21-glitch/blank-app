@@ -61,7 +61,7 @@ def multiapps_main(username):
 
     def get_drive_service():
         # This pulls directly from the secrets we just configured
-        info = app.secrets["gcp_service_account"]
+        info = app.secrets["gcp_service_account"].to_dict()
         info["private_key"] = info["private_key"].replace("\\n", "\n")
         creds = service_account.Credentials.from_service_account_info(info)
         return build('drive', 'v3', credentials=creds)
