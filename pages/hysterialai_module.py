@@ -25,7 +25,7 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
     if st.link_button("← Back", url="hysterial-ai.streamlit.app"):
-        st.switch_page("multiapps.py")
+        pass
 
 # --- SESSION STATE ---
 if "messages" not in st.session_state:
