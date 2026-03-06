@@ -6,9 +6,6 @@ import time
 st.set_page_config(page_title="Hysterial AI", page_icon="💻")
 st.title("Hysterial AI")
 
-if st.button("Back"):
-    st.switch_page("multiapps.py")
-
 api_key = st.secrets.get("GEMINI_API_KEY")
 
 if not api_key:
@@ -19,6 +16,7 @@ client = genai.Client(api_key=api_key)
 
 # --- SIDEBAR SETTINGS ---
 with st.sidebar:
+    st.warning("Google's Servers might be overloaded. If not working, try later.")
     st.header("Settings")
     model_choice = st.selectbox("Model", ["gemini-3-flash-preview", "gemini-2.5-flash"])
     temp = st.slider("Creativity", 0.1, 1.5, 0.7)
@@ -26,6 +24,8 @@ with st.sidebar:
         st.session_state.chat_session = client.chats.create(model=model_choice)
         st.session_state.messages = []
         st.rerun()
+    if st.button("← Back"):
+        st.switch_page("multiapps.py")
 
 # --- SESSION STATE ---
 if "messages" not in st.session_state:
