@@ -85,4 +85,12 @@ def multiapps_main(username):
         fid = upload_file(myfile, FOLDER_ID)
         app.success(f"Uploaded! File ID: {fid}")
 
+    app.divider()
+
+    app.header("Archive 📳")
+    app.write("Welcome to my archive!")
+
+
+
+
 multiapps_main(redirected_user)
