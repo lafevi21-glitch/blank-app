@@ -88,7 +88,16 @@ def multiapps_main(username):
     app.divider()
 
     app.header("Archive 📳")
-    app.write("Welcome to my archive!")
+    app.write("Welcome to my archive! Find all of my files here.")
+    app.subheader("Documents 📄")
+
+    # Documents
+
+    app.write("Doc 1")
+    app.download_button("Download from cloud")
+
+    # Documents
+
 
 
 
