@@ -87,6 +87,13 @@ def multiapps_main(username):
 
     app.divider()
 
+    app.header("Hysterial AI 💻")
+    app.write("Welcome to Mateo's personal AI assistant. Click the button below to start!")
+    if app.button("Connect"):
+        app.switch_page("pages/hysterialai_module.py")
+
+    app.divider()
+
     app.header("Archive 📳")
     app.write("Welcome to my archive! Find all of my files here.")
     app.subheader("Documents 📄")
