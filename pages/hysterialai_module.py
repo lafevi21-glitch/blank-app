@@ -19,6 +19,11 @@ with st.sidebar:
     st.warning("Google's Servers might be overloaded. If not working, try later.")
     st.header("Settings")
     model_choice = st.selectbox("Model", ["gemini-3-flash-preview", "gemini-2.5-flash"])
+    
+    if model_choice == "gemini-3-flash-preview":
+        st.warning("Please note that this is an **experimental modified version** of Gemini 3 Flash!")
+        st.warning("You may crash during this experience.")
+
     temp = st.slider("Creativity", 0.1, 1.5, 0.7)
     if st.button("Clear Chat"):
         st.session_state.chat_session = client.chats.create(model=model_choice)
