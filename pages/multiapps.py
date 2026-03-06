@@ -4,6 +4,10 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 import io
 
+ver = "1"
+
+app.set_page_config(page_title="MultiApps V" + ver, page_icon="✨")
+
 if not "logged_user" in app.session_state:
     app.error("Please, make sure you are logged!")
     app.switch_page("streamlit_app.py")
@@ -26,8 +30,6 @@ app.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-ver = "1"
 
 redirected_user = app.session_state.get("logged_user", "Guest")
 
@@ -84,6 +86,13 @@ def multiapps_main(username):
     if myfile and app.button("Upload to Drive"):
         fid = upload_file(myfile, FOLDER_ID)
         app.success(f"Uploaded! File ID: {fid}")
+
+    app.divider()
+
+    app.header("Hysterial AI 💻")
+    app.write("Welcome to Mateo's personal AI assistant. Click the button below to start!")
+    if app.button("Connect"):
+        app.switch_page("pages/hysterialai_module.py")
 
     app.divider()
 
