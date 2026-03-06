@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 import io
 
-
+st
 if not "logged_user" in app.session_state:
     app.error("Please, make sure you are logged!")
     app.switch_page("streamlit_app.py")
@@ -62,7 +62,7 @@ def multiapps_main(username):
 
     def get_drive_service():
         # This pulls directly from the secrets we just configured
-        info = st.secrets["gcp_service_account"]
+        info = app.secrets["gcp_service_account"]
         info["private_key"] = info["private_key"].replace("\\n", "\n")
         creds = service_account.Credentials.from_service_account_info(info)
         return build('drive', 'v3', credentials=creds)
