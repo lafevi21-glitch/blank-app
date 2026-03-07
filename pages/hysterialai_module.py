@@ -16,6 +16,7 @@ client = genai.Client(api_key=api_key)
 
 # --- SIDEBAR SETTINGS ---
 with st.sidebar:
+    st.header("HysterialAI Beta")
     st.warning("Google's Servers might be overloaded. If not working, try later.")
     st.header("Settings")
     model_choice = st.selectbox("Model", ["gemini-3-flash-preview", "gemini-2.5-flash"])
